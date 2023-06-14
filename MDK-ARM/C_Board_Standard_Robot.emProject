@@ -1,0 +1,157 @@
+<!DOCTYPE CrossStudio_Project_File>
+<solution Name="C_Board_Standard_Robot" target="8" version="2">
+  <configuration Name="C_Board_Standard_Robot" hidden="Yes" />
+  <configuration
+    Name="C_Board_Standard_Robot External"
+    inherited_configurations="External Keil ARMCC;C_Board_Standard_Robot" />
+  <configuration
+    Name="C_Board_Standard_Robot Internal"
+    inherited_configurations="Internal;C_Board_Standard_Robot" />
+  <configuration
+    Name="External Keil ARMCC"
+    Platform="ARM"
+    hidden="Yes"
+    macros="KEIL_TOOLKIT_DIR=E:/Keil_v5/ARM" />
+  <configuration Name="Internal" Platform="ARM" hidden="Yes" />
+  <project Name="C_Board_Standard_Robot">
+    <configuration
+      CMSIS_CORE="Yes"
+      Name="C_Board_Standard_Robot"
+      arm_architecture="v7EM"
+      arm_core_type="Cortex-M4"
+      arm_endian="Little"
+      arm_fpu_type="FPv4-SP-D16"
+      arm_target_device_name="STM32F407IG"
+      c_preprocessor_definitions="USE_HAL_DRIVER;STM32F407xx;USE_HAL_DRIVER;STM32F407xx;ARM_MATH_CM4;__FPU_USED=1U;__FPU_PRESENT=1U;__CC_ARM;ARM_MATH_MATRIX_CHECK;ARM_MATH_ROUNDING"
+      c_user_include_directories="../Inc;../Drivers/STM32F4xx_HAL_Driver/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;../Middlewares/Third_Party/FreeRTOS/Source/include;../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS;../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../Drivers/CMSIS/Include;../Application;../Bsp;../Components;../Components/Algorithm;../Components/Controller;../Components/Devices;../Drivers/CMSIS/Include;../Components/Algorithm/Include;../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F"
+      linker_section_placements_segments="FLASH1 RX 0x08000000 0x00100000;RAM1 RWX 0x20000000 0x00020000;" />
+    <configuration
+      Name="C_Board_Standard_Robot External"
+      armcc_cl_cpu="Cortex-M4"
+      armcc_cl_enable_debug_info="Yes"
+      armcc_cl_optimization_level="None"
+      asm_additional_options="--pd;&quot;__MICROLIB SETA 1&quot;"
+      asm_additional_options_backup="--cpu;Cortex-M4;--pd;&quot;__MICROLIB SETA 1&quot;"
+      c_additional_options="-D__MICROLIB;--C99;--split_sections"
+      c_additional_options_backup="--cpu;Cortex-M4;-D__MICROLIB;--C99;-O0;--split_sections;-g"
+      link_additional_options_backup="--cpu;Cortex-M4;--ro_base=0x08000000;--rw_base=0x20000000;--first=__Vectors;--library_type=microlib"
+      linker_additional_options="--ro_base=0x08000000;--rw_base=0x20000000;--first=__Vectors;--library_type=microlib" />
+    <configuration
+      Name="Common"
+      arm_architecture="v7EM"
+      arm_core_type="Cortex-M4"
+      arm_endian="Little"
+      arm_fpu_type="FPv4-SP-D16"
+      arm_target_device_name="STM32F407IG"
+      arm_target_interface_type="SWD"
+      debug_start_from_entry_point_symbol="No"
+      debug_target_connection="J-Link"
+      linker_section_placements_segments="FLASH1 RX 0x08000000 0x00100000;RAM1 RWX 0x20000000 0x00020000;"
+      project_directory=""
+      project_type="Executable" />
+    <configuration
+      Name="External Keil"
+      build_intermediate_directory="C_Board_Standard_Robot"
+      build_output_directory="C_Board_Standard_Robot"
+      build_output_file_name="C_Board_Standard_Robot/C_Board_Standard_Robot.axf" />
+    <configuration
+      BUILD_OPTIONS="ARM CC"
+      Name="External Keil ARMCC"
+      build_generic_options_file_name="$(StudioDir)/targets/ARMCC_build_options.xml"
+      project_type="Externally Built Executable" />
+    <configuration
+      LIBRARY_IO_TYPE="SEMIHOST (host-formatted)"
+      Name="Internal"
+      arm_compiler_variant="SEGGER"
+      arm_linker_variant="SEGGER"
+      build_intermediate_directory="Output/$(ProjectName) $(Configuration)/Obj"
+      build_output_directory="Output/$(Configuration)/Exe"
+      build_output_file_name="$(OutDir)/$(ProjectName)$(EXE)"
+      link_linker_script_file="$(StudioDir)/samples/SEGGER_Flash.icf" />
+    <folder Name="::CMSIS" />
+    <folder Name="Application/Applications">
+      <file file_name="../Application/can_Task.c" />
+      <file file_name="../Application/ins_task.c" />
+      <file file_name="../Application/ros_Task.c" />
+    </folder>
+    <folder Name="Application/Bsp">
+      <file file_name="../Bsp/bsp_can.c" />
+      <file file_name="../Bsp/bsp_chassis.c" />
+      <file file_name="../Bsp/bsp_dwt.c" />
+      <file file_name="../Bsp/bsp_PWM.c" />
+      <file file_name="../Bsp/bsp_ros.c" />
+      <file file_name="../Bsp/CAN_receive.c" />
+      <file file_name="../Bsp/pid.c" />
+    </folder>
+    <folder Name="Application/Components">
+      <file file_name="../Components/Devices/BMI088driver.c" />
+      <file file_name="../Components/Devices/BMI088Middleware.c" />
+      <file file_name="../Components/Controller/controller.c" />
+      <file file_name="../Components/kalman_filter.c" />
+      <file file_name="../Components/Algorithm/QuaternionEKF.c" />
+      <file file_name="../Components/user_lib.c" />
+    </folder>
+    <folder Name="Application/MDK-ARM">
+      <file file_name="../Drivers/CMSIS/Lib/ARM/arm_cortexM4lf_math.lib">
+        <configuration Name="External Keil ARMCC" file_type="Library" />
+      </file>
+      <file file_name="startup_stm32f407xx.s">
+        <configuration Name="Internal" build_exclude_from_build="Yes" />
+      </file>
+    </folder>
+    <folder Name="Application/User">
+      <file file_name="../Src/can.c" />
+      <file file_name="../Src/dma.c" />
+      <file file_name="../Src/freertos.c" />
+      <file file_name="../Src/gpio.c" />
+      <file file_name="../Src/main.c" />
+      <file file_name="../Src/spi.c" />
+      <file file_name="../Src/stm32f4xx_hal_msp.c" />
+      <file file_name="../Src/stm32f4xx_hal_timebase_tim.c" />
+      <file file_name="../Src/stm32f4xx_it.c" />
+      <file file_name="../Src/tim.c" />
+      <file file_name="../Src/usart.c" />
+    </folder>
+    <folder Name="Drivers/CMSIS">
+      <file file_name="../Src/system_stm32f4xx.c" />
+    </folder>
+    <folder Name="Drivers/STM32F4xx_HAL_Driver">
+      <file file_name="../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c" />
+      <file file_name="../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_can.c" />
+      <file file_name="../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c" />
+      <file file_name="../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c" />
+      <file file_name="../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c" />
+      <file file_name="../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c" />
+      <file file_name="../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c" />
+      <file file_name="../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c" />
+      <file file_name="../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ramfunc.c" />
+      <file file_name="../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c" />
+      <file file_name="../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c" />
+      <file file_name="../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c" />
+      <file file_name="../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c" />
+      <file file_name="../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c" />
+      <file file_name="../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.c" />
+      <file file_name="../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c" />
+      <file file_name="../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c" />
+      <file file_name="../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c" />
+    </folder>
+    <folder Name="Internal Files">
+      <configuration Name="Common" build_exclude_from_build="Yes" />
+      <configuration Name="Internal" build_exclude_from_build="No" />
+      <file file_name="$(StudioDir)/samples/Cortex_M_Startup.s" />
+      <file file_name="$(StudioDir)/samples/SEGGER_THUMB_Startup.s" />
+    </folder>
+    <folder Name="Middlewares/FreeRTOS">
+      <file file_name="../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c" />
+      <file file_name="../Middlewares/Third_Party/FreeRTOS/Source/croutine.c" />
+      <file file_name="../Middlewares/Third_Party/FreeRTOS/Source/event_groups.c" />
+      <file file_name="../Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.c" />
+      <file file_name="../Middlewares/Third_Party/FreeRTOS/Source/list.c" />
+      <file file_name="../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F/port.c" />
+      <file file_name="../Middlewares/Third_Party/FreeRTOS/Source/queue.c" />
+      <file file_name="../Middlewares/Third_Party/FreeRTOS/Source/stream_buffer.c" />
+      <file file_name="../Middlewares/Third_Party/FreeRTOS/Source/tasks.c" />
+      <file file_name="../Middlewares/Third_Party/FreeRTOS/Source/timers.c" />
+    </folder>
+  </project>
+</solution>

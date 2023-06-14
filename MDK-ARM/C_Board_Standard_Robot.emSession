@@ -1,0 +1,43 @@
+<!DOCTYPE CrossStudio_Session_File>
+<session>
+ <Bookmarks/>
+ <Breakpoints groups="Breakpoints" active_group="Breakpoints"/>
+ <ExecutionProfileWindow/>
+ <FrameBuffer/>
+ <Memory1/>
+ <Memory2/>
+ <Memory3/>
+ <Memory4/>
+ <Project>
+  <ProjectSessionItem path="C_Board_Standard_Robot"/>
+  <ProjectSessionItem path="C_Board_Standard_Robot;C_Board_Standard_Robot"/>
+  <ProjectSessionItem path="C_Board_Standard_Robot;C_Board_Standard_Robot;Application/Bsp"/>
+ </Project>
+ <Register1/>
+ <Register2/>
+ <Register3/>
+ <Register4/>
+ <Threads>
+  <ThreadsWindow showLists=""/>
+ </Threads>
+ <TraceWindow>
+  <Trace enabled="Yes"/>
+ </TraceWindow>
+ <Watch1>
+  <Watches active="1" update="Never"/>
+ </Watch1>
+ <Watch2>
+  <Watches active="0" update="Never"/>
+ </Watch2>
+ <Watch3>
+  <Watches active="0" update="Never"/>
+ </Watch3>
+ <Watch4>
+  <Watches active="0" update="Never"/>
+ </Watch4>
+ <Files>
+  <SessionOpenFile windowGroup="DockEditLeft" x="32" y="20" useTextEdit="1" path="../Bsp/pid.c" left="0" top="0" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="0" useTextEdit="1" path="../Bsp/bsp_chassis.c" left="0" selected="1" top="121" codecName="Default"/>
+ </Files>
+ <EMStudioWindow activeProject="C_Board_Standard_Robot" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="C_Board_Standard_Robot External" sessionSettings="" debugSearchFileMap="" fileDialogInitialDirectory="" debugSearchPath="" autoConnectCapabilities="3199"/>
+</session>
