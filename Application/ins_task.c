@@ -95,6 +95,7 @@ void INS_Task(void)
 
         // 获取最终数据
         INS.Yaw = QEKF_INS.Yaw;
+        INS.Corr_Yaw = CORRECTION_FACTOR * INS.Yaw;
         INS.Pitch = QEKF_INS.Pitch;
         INS.Roll = QEKF_INS.Roll;
         INS.YawTotalAngle = QEKF_INS.YawTotalAngle;

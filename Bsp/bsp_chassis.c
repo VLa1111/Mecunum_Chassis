@@ -23,7 +23,7 @@ float get_Error_Angle(Ros_float_t *recvData)
 {
   float errAngle = 0;
   float cmdrelaAngle = recvData->wz;
-  if (cmdrelaAngle > 0)
+  if (cmdrelaAngle >= 0)
   {
     errAngle = INS.Yaw - cmdrelaAngle;
   }

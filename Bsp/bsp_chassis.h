@@ -23,7 +23,7 @@
 #include "pid.h"
 
 //控制系数
-#define STD_TRANS_VX	1
+#define STD_TRANS_VX	-1
 #define STD_TRANS_VY	1
 #define STD_TRANS_WZ	1
 
@@ -38,6 +38,12 @@
 
 //车身中心距轮子尺寸
 #define MOTOR_DISTANCE_TO_CENTER 0.17f
+
+//车身轴距
+#define AXLE_LENGTH  0.16f
+
+//陀螺仪到车身中心距离
+#define GYROSCOPE_DISTANCE 0.10f
 
 //底盘任务控制间隔 2ms
 #define CHASSIS_CONTROL_TIME_MS 2

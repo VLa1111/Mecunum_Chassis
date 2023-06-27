@@ -42,6 +42,9 @@ c_board_standard_robot\ins_task.o: ../Drivers/CMSIS/Include/core_cm4.h
 c_board_standard_robot\ins_task.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 c_board_standard_robot\ins_task.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 c_board_standard_robot\ins_task.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+c_board_standard_robot\ins_task.o: ..\Bsp\bsp_chassis.h
+c_board_standard_robot\ins_task.o: ..\Bsp\CAN_receive.h
+c_board_standard_robot\ins_task.o: ..\Bsp\pid.h
 c_board_standard_robot\ins_task.o: ..\Components\Controller\controller.h
 c_board_standard_robot\ins_task.o: ..\Bsp\bsp_dwt.h
 c_board_standard_robot\ins_task.o: ..\Components\user_lib.h

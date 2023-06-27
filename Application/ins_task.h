@@ -16,12 +16,14 @@
 #include "stdint.h"
 #include "BMI088driver.h"
 #include "QuaternionEKF.h"
+#include "bsp_chassis.h"
 
 #define X 0
 #define Y 1
 #define Z 2
 
 #define INS_TASK_PERIOD 1
+#define CORRECTION_FACTOR ((AXLE_LENGTH + GYROSCOPE_DISTANCE) / (double)AXLE_LENGTH) 
 
 typedef struct
 {
@@ -46,6 +48,7 @@ typedef struct
     float Roll;
     float Pitch;
     float Yaw;
+    float Corr_Yaw;
     float YawTotalAngle;
 } INS_t;
 

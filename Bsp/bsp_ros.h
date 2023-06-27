@@ -32,16 +32,20 @@ typedef enum
 
 typedef enum
 {
-	vx_mode_stop   = 0,
-	vx_mode_normal = 1,
-	vx_mode_dash   = 2,
+	vx_mode_normal_ = -1,
+	vx_mode_dash_   = -2,	
+	vx_mode_stop    =  0,
+	vx_mode_normal  =  1,
+	vx_mode_dash    =  2,
 }Vx_Speed_e;
 
 typedef enum
 {
-	vy_mode_stop   = 0,
-	vy_mode_normal = 1,
-	vy_mode_dash   = 2,
+	vy_mode_normal_ = -1,
+	vy_mode_dash_   = -2,
+	vy_mode_stop   =   0,
+	vy_mode_normal =   1,
+	vy_mode_dash   =   2,
 }Vy_Speed_e;
 
 //数据协议结构体
@@ -61,16 +65,16 @@ typedef struct
 	/* data */
 	Ros_OwnID_e	idenitity;
 	Tx_Order_e		Order;
-	uint8_t 		   vx;
-	uint8_t 		   vy;
+	Vx_Speed_e		   vx;
+	Vy_Speed_e		   vy;
 	float   		   wz;
 }Ros_float_t;
 
 typedef struct {
 
-  const chassis_move_t    *chassis_point;
-  dataFrame_t             *dataStream_point;
-  const Ros_float_t			  *floatData_point;
+  const chassis_move_t    		   *chassis_point;
+  dataFrame_t             		*dataStream_point;
+  const Ros_float_t			 	 *floatData_point;
 	
 }Ros_t;
 
