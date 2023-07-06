@@ -27,6 +27,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "ins_task.h"
+#include "detect_task.h"
 #include "bsp_ros.h"
 #include "bsp_chassis.h"
 #include "usart.h"
@@ -56,6 +57,7 @@
 osThreadId INSTaskHandle;
 osThreadId ROSTaskHandle;
 osThreadId CANTaskHandle;
+osThreadId DetectTaskHandle;
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
@@ -65,6 +67,7 @@ osThreadId CANTaskHandle;
 void StartINSTask(void const * argument);
 void StartROSTask(void const * argument);
 void StartCANTask(void const * argument);
+void StartDetectTask(void const * argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
@@ -139,6 +142,10 @@ void MX_FREERTOS_Init(void) {
   osThreadDef(CANTask, StartCANTask, osPriorityNormal, 0, 1024);
   CANTaskHandle = osThreadCreate(osThread(CANTask), NULL);
 
+  /* definition and creation of DetectTask */
+  osThreadDef(DetectTask, StartDetectTask, osPriorityIdle, 0, 128);
+  DetectTaskHandle = osThreadCreate(osThread(DetectTask), NULL);
+
   /* USER CODE BEGIN RTOS_THREADS */
     /* add threads, ... */
   /* USER CODE END RTOS_THREADS */
@@ -199,7 +206,11 @@ void StartROSTask(void const * argument)
 void StartCANTask(void const * argument)
 {
   /* USER CODE BEGIN StartCANTask */
-	Chassis_init();
+  while (toe_is_error(ROSTOE))
+  {
+    vTaskDelay(2);
+  }
+  Chassis_init();
   /* Infinite loop */
   for(;;)
   {
@@ -208,6 +219,30 @@ void StartCANTask(void const * argument)
     osDelay(1);
   }
   /* USER CODE END StartCANTask */
+}
+
+/* USER CODE BEGIN Header_StartDetectTask */
+/**
+* @brief Function implementing the DetectTask thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_StartDetectTask */
+void StartDetectTask(void const * argument)
+{
+  /* USER CODE BEGIN StartDetectTask */
+  static uint32_t systemTime;
+
+  systemTime = xTaskGetTickCount();
+
+  // ≥ı ºªØ
+  DetectInit(systemTime);
+  /* Infinite loop */
+  for(;;)
+  {
+    DetectTask();
+  }
+  /* USER CODE END StartDetectTask */
 }
 
 /* Private application code --------------------------------------------------*/

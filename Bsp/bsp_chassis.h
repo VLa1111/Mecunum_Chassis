@@ -24,8 +24,8 @@
 
 //¿ØÖÆÏµÊý
 #define STD_TRANS_VX	-1
-#define STD_TRANS_VY	1
-#define STD_TRANS_WZ	1
+#define STD_TRANS_VY	 1
+#define STD_TRANS_WZ	 1
 
 #define CHASSIS_ACCEL_X_NUM 0.1666666667f
 #define CHASSIS_ACCEL_Y_NUM 0.3333333333f

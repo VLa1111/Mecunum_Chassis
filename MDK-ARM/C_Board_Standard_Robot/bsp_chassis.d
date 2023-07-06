@@ -47,3 +47,4 @@ c_board_standard_robot\bsp_chassis.o: ../Drivers/CMSIS/Include/core_cm4.h
 c_board_standard_robot\bsp_chassis.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 c_board_standard_robot\bsp_chassis.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 c_board_standard_robot\bsp_chassis.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+c_board_standard_robot\bsp_chassis.o: ..\Application\detect_task.h

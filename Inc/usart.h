@@ -43,8 +43,8 @@ void MX_USART1_UART_Init(void);
 void MX_USART6_UART_Init(void);
 
 /* USER CODE BEGIN Prototypes */
-#define TX_MAX_LEN 15
-#define RX_MAX_LEN  14
+#define TX_MAX_LEN  15
+#define RX_MAX_LEN  15
 #define PID_Debug   0
 #define USART_REC_LEN  			100 
 #define RXBUFFERSIZE   			1 					//ª∫¥Ê¥Û–°

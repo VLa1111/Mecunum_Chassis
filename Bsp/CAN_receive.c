@@ -23,7 +23,6 @@
 
 
 extern CAN_HandleTypeDef hcan1;
-//extern CAN_HandleTypeDef hcan2;
 //motor data read
 #define get_motor_measure(ptr, data)                                    \
     {                                                                   \

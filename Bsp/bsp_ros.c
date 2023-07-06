@@ -1,6 +1,7 @@
 #include "bsp_ros.h"
 #include "bsp_chassis.h"
 #include "INS_task.h"
+#include "detect_task.h"
 #include "stdio.h"
 #include "usart.h"
 #include "main.h"
@@ -11,17 +12,18 @@ dataFrame_t TxdTopic;
 uint8_t Tx_flag = 0;
 Ros_float_t Recv_Data;
 uint32_t rx1_buf[19] = {0}, rx2_buf[19] = {0};
-
+void Recv_Error(void);
 void Ros_Recv(uint8_t *data_buf, Ros_float_t *Receive)
 {
         Receive->idenitity  =       (Ros_OwnID_e)data_buf[F_indentity];
         Receive->Order      =       (Tx_Order_e)data_buf[F_order];
-        Receive->vx         =       (Vx_Speed_e)data_buf[F_vx];
-        Receive->vy         =       (Vy_Speed_e)data_buf[F_vy];
-
+        memcpy(&Receive->vx, &data_buf[F_vx], 4);
+        memcpy(&Receive->vy, &data_buf[F_vy], 4);
         memcpy(&Receive->wz, &data_buf[F_wz], 4);
 
         Tx_flag = 1;
+        //Recv_Error();
+        DetectHook(ROSTOE);
     
 }
 
@@ -29,13 +31,9 @@ void Ros_Upload()
 {
     TxdTopic.idenitity = Ros_Sevent;
     TxdTopic.Order = Tx_Request;
-    TxdTopic.vx = get_chassisMove_point()->vx;
+    TxdTopic.vx = tx_conctret * get_chassisMove_point()->vx;
     TxdTopic.vy = get_chassisMove_point()->vy;
-		TxdTopic.axis = INS.Yaw;
-    // memcpy(&upload->dataStream_point->vx,    &get_chassisMove_point()->vx, 4);
-    // memcpy(&upload->dataStream_point->vy,    &get_chassisMove_point()->vy, 4);
-    // memcpy(&upload->dataStream_point->wz,    &get_chassisMove_point()->wz, 4);
-    // memcpy(&upload->dataStream_point->axis,  &INS.Yaw, 4);
+    TxdTopic.axis = INS.Yaw;
     TxdTopic.frameEnd = Ros_End;
 }
 
@@ -59,7 +57,7 @@ void Ros_Transmit()
 
     memcpy(&TxBuffer[0], &TxdTopic, sizeof(TxdTopic));
 	
-        ROS_DMA_TX(Recv_Data.Order);
+          ROS_DMA_TX(Recv_Data.Order);
 		//printf("%.02f,%.02f\r\n",INS.Yaw,Recv_Data.wz);
 }
 
@@ -74,6 +72,26 @@ void Message_Init()
     TxdTopic.vy = init_value;
     TxdTopic.axis = init_value;
 		TxdTopic.frameEnd = Ros_End;
+}
+
+void Recv_Error(void)
+{
+    if (Recv_Data.vx > err_message_hor)
+    {
+        goto err;
+    }
+        if (Recv_Data.vy > err_message_hor)
+    {
+        goto err;
+    }
+        if (Recv_Data.wz > err_message_th || Recv_Data.wz < (-1 * err_message_th))
+    {
+        goto err;
+    }
+err:
+    Recv_Data.vx = 0;
+    Recv_Data.vy = 0;
+    Recv_Data.wz = 0;
 }
 
 Ros_float_t *get_Recv_Data_Point(void)

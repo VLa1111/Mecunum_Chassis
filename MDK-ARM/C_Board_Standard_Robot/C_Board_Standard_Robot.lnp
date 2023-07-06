@@ -16,6 +16,7 @@
 "c_board_standard_robot\ins_task.o"
 "c_board_standard_robot\can_task.o"
 "c_board_standard_robot\ros_task.o"
+"c_board_standard_robot\detect_task.o"
 "c_board_standard_robot\bsp_dwt.o"
 "c_board_standard_robot\bsp_pwm.o"
 "c_board_standard_robot\bsp_can.o"

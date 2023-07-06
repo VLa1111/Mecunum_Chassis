@@ -59,6 +59,7 @@ c_board_standard_robot\freertos.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 c_board_standard_robot\freertos.o: ..\Bsp\bsp_chassis.h
 c_board_standard_robot\freertos.o: ..\Bsp\CAN_receive.h
 c_board_standard_robot\freertos.o: ..\Bsp\pid.h
+c_board_standard_robot\freertos.o: ..\Application\detect_task.h
 c_board_standard_robot\freertos.o: ..\Bsp\bsp_ros.h
 c_board_standard_robot\freertos.o: ../Inc/usart.h
 c_board_standard_robot\freertos.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h

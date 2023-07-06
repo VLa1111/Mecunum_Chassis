@@ -10,9 +10,8 @@
 #define F_indentity  	0
 #define F_order	  	 	1
 #define F_vx			2
-#define F_vy			3
-#define F_wz			4
-#define F_axis			8
+#define F_vy			6
+#define F_wz			10
 //机器人ID
 typedef enum
 {
@@ -30,32 +29,20 @@ typedef enum
 }Tx_Order_e;
 
 
-typedef enum
-{
-	vx_mode_normal_ = -1,
-	vx_mode_dash_   = -2,	
-	vx_mode_stop    =  0,
-	vx_mode_normal  =  1,
-	vx_mode_dash    =  2,
-}Vx_Speed_e;
+typedef float Vx_Speed_e;
 
-typedef enum
-{
-	vy_mode_normal_ = -1,
-	vy_mode_dash_   = -2,
-	vy_mode_stop   =   0,
-	vy_mode_normal =   1,
-	vy_mode_dash   =   2,
-}Vy_Speed_e;
+typedef float Vy_Speed_e;
+
+typedef float axis_e;
 
 //数据协议结构体
 #pragma pack(1)
 typedef struct {
 	Ros_OwnID_e	idenitity;
 	Tx_Order_e	Order;
-	float vx;
-	float vy;
-	float axis;
+	Vx_Speed_e vx;
+	Vx_Speed_e vy;
+	axis_e axis;
 	uint8_t frameEnd;
 }dataFrame_t;
 
@@ -78,6 +65,9 @@ typedef struct {
 	
 }Ros_t;
 
+#define tx_conctret  -1
+#define err_message_hor	 10
+#define err_message_th	 180
 extern Ros_t RecvTopic;
 Ros_float_t* get_Recv_Data_Point(void);
 void Message_Init(void);

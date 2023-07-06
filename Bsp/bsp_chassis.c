@@ -4,6 +4,7 @@
 #include "usart.h"
 #include "bsp_ros.h"
 #include "ins_task.h"
+#include "detect_task.h"
 #define easy_abs(x) ((x) > 0 ? (x) : (-x))
 
 // 底盘各部分初始化
@@ -49,13 +50,7 @@ void Chassis_init(void)
 void chassis_ctrl(void)
 {
   Ros_float_t *rosHook = get_Recv_Data_Point();
-  if (rosHook->vx == 0 && rosHook->vy == 0 && rosHook->wz == 0)
-  {
-    // 上位机命令丢失断电控制
-    CAN_cmd_chassis(0, 0, 0, 0);
-  }
-  else
-  { 
+
     // 底盘数据更新
     chassis_feedback_update(rosHook);
     // 底盘控制量设置
@@ -65,12 +60,18 @@ void chassis_ctrl(void)
     //电流赋值
     CAN_cmd_chassis(chassis_move.motor_chassis[0].give_current, chassis_move.motor_chassis[1].give_current,
                     chassis_move.motor_chassis[2].give_current, chassis_move.motor_chassis[3].give_current);
-  }
+  
   HAL_Delay(CHASSIS_CONTROL_TIME_MS);
 }
 
 static void chassis_set_contorl(Ros_float_t *RosCmd)
 {
+  while (toe_is_error(ROSTOE))
+  {
+      chassis_move.vx_set = 0;
+      chassis_move.vy_set = 0;
+      chassis_move.wz_set = 0;
+  }
   // 根据上位机指令设置&chassis_move.vx_set,&chassis_move.vy_set,&chassis_move.wz_set	
   chassis_move.vx_set = RosCmd->vx * STD_TRANS_VX;
   chassis_move.vy_set = RosCmd->vy * STD_TRANS_VY;

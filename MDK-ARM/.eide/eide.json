@@ -25,6 +25,9 @@
                 "path": "../Application/can_Task.c"
               },
               {
+                "path": "../Application/detect_task.c"
+              },
+              {
                 "path": "../Application/ins_task.c"
               },
               {
@@ -417,9 +420,7 @@
           "../Components/Devices",
           "../Components/Algorithm/Include",
           "../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F",
-          ".cmsis/include",
-          "RTE/_C_Board_Standard_Robot",
-          ".eide/deps"
+          "RTE/_C_Board_Standard_Robot"
         ],
         "libList": [],
         "sourceDirList": [],
